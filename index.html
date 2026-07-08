@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alishbah Asif — CS Student</title>
+  <meta name="description" content="Portfolio of Alishbah Asif, a Computer Science student specializing in Web Development, AI, and Autonomous Systems." />
+  <meta name="theme-color" content="#2B2D31" />
+ 
+  <meta property="og:title" content="Alishbah Asif — CS Student" />
+  <meta property="og:description" content="Portfolio of Alishbah Asif, a Computer Science student specializing in AI, App Development, and Web Development." />
+  <meta property="og:type" content="website" />
+ 
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=general-sans@400,500,600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="custom-cursor-dot" id="cursor-dot"></div>
+  <div class="custom-cursor-ring" id="cursor-ring"></div>
+
+  <div class="current-rail">
+    <div class="current-rail__fill" id="scroll-progress-fill"></div>
+  </div>
+  
+  <canvas class="particle-canvas" id="particle-canvas"></canvas>
+  <div class="bg-gradient-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div class="noise-overlay"></div>
+  <div class="grid-overlay"></div>
+
+  <!-- Header-->
+  <header class="navbar-header" id="navbar">
+    <div class="container-custom header-container">
+      <a href="#home" class="nav-logo" data-cursor-hover>
+        Alishbah<span>Asif</span>.
+      </a>
+      
+      <nav class="nav-links">
+        <a href="#home" class="nav-item active" data-cursor-hover>Home</a>
+        <a href="#about" class="nav-item" data-cursor-hover>About</a>
+        <a href="#skills" class="nav-item" data-cursor-hover>Skills</a>
+        <a href="#projects" class="nav-item" data-cursor-hover>Projects</a>
+        <a href="#leadership" class="nav-item" data-cursor-hover>Leadership</a>
+        <a href="#contact" class="nav-item" data-cursor-hover>Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Theme Toggle -->
+        <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle light and dark mode" data-cursor-hover>
+          <span class="toggle-thumb" id="toggle-thumb">
+            <!-- Sun Icon  -->
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <!-- Moon Icon  -->
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+        </button>
+
+        <a href="#contact" class="btn-talk btn-primary" data-cursor-hover>Let's proceed</a>
+        
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-menu-toggle" id="mobile-toggle" aria-label="Toggle Navigation Menu" data-cursor-hover>
+          <svg class="icon-hamburger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+          <svg class="icon-close hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Slides Navigation -->
+  <nav class="mobile-nav" id="mobile-nav">
+    <div class="mobile-nav-links">
+      <a href="#home" class="mobile-nav-item">Home</a>
+      <a href="#about" class="mobile-nav-item">About</a>
+      <a href="#skills" class="mobile-nav-item">Skills</a>
+      <a href="#projects" class="mobile-nav-item">Projects</a>
+      <a href="#leadership" class="mobile-nav-item">Leadership</a>
+      <a href="#contact" class="mobile-nav-item">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+      <div class="container-custom hero-container">
+        <!-- Hero Left Content -->
+        <div class="hero-content scroll-reveal fade-slide-up">
+          <div class="availability-badge">
+            <span class="pulse-dot"></span>
+            <span class="badge-text font-mono">Available for Opportunities</span>
+          </div>
+          
+          <p class="greeting-subtitle font-serif">Hi, I'm</p>
+          <h1 class="hero-name-heading">
+            <span class="gradient-text">Alishbah Asif</span>
+          </h1>
+          
+          <div class="typing-text-wrapper">
+            <span class="typing-target font-display" id="typing-text"></span><span class="typing-cursor">|</span>
+          </div>
+
+          <p class="hero-description body-text">
+            I am a Computer Science student at <span class="highlight-text text-ink">National University of Computer and Emerging Sciences-NUCES</span>, passionate about building high-performance software that solves real-world problems. Currently focusing on application development, AI models, and creative web engineering.
+          </p>
+
+          <div class="hero-ctas">
+            <a href="#projects" class="btn-primary magnetic-btn" data-cursor-hover>
+              View Projects
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="cta-arrow-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <a href="assets/resume.pdf" download class="btn-outline magnetic-btn" data-cursor-hover>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="cta-download-icon"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              Download Resume
+            </a>
+            <a href="#contact" class="btn-outline magnetic-btn" data-cursor-hover>
+              Contact Me
+            </a>
+          </div>
+
+         
+          <div class="hero-social-links">
+            <a href="https://github.com/alishbah-asif" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon-wrapper" data-cursor-hover>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/alishbah-asif-489766326/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon-wrapper" data-cursor-hover>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+            
+          </div>
+        </div>
+
+        <!-- Hero Right Content -->
+        <div class="hero-image-wrapper scroll-reveal fade-slide-up" data-parallax-speed="0.08">
+          <div class="rings-container">
+            <div class="rotating-ring ring-1"></div>
+            <div class="rotating-ring ring-2"></div>
+            <div class="rotating-ring ring-3"></div>
+            <div class="glowing-circle"></div>
+          </div>
+          <div class="hero-profile-avatar-frame">
+            <img src="assets/my_img.png" alt="Alishbah Asif Profile Picture" class="hero-profile-avatar" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator at Bottom -->
+      <a href="#about" class="scroll-indicator-mouse" aria-label="Scroll to About Section" data-cursor-hover>
+        <span class="mouse-wheel-dot"></span>
+      </a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+      <div class="container-custom about-container">
+        <!-- Left Side: Profile Picture Layout & Stats -->
+        <div class="about-visuals scroll-reveal fade-slide-right">
+          <div class="about-image-card tilt-card" data-tilt-scale="1.02">
+            <div class="about-avatar-wrapper">
+              <img src="assets/my_img.png" alt="Alishbah Asif Profile Avatar" class="about-avatar" />
+              <div class="about-card-glow"></div>
+            </div>
+                       
+          </div>
+        </div>
+
+        <!-- Right Side -->
+        <div class="about-details scroll-reveal fade-slide-left">
+          <p class="section-eyebrow font-serif">01 — About Me</p>
+          <h2 class="section-heading font-display">Building solutions with code and curiosity.</h2>
+          
+          <div class="about-bio body-text">
+            <p>
+              I am a Computer Science student passionate about building software that solves real-world problems. My academic and project path focuses on <span class="highlight-text text-ink font-medium">Artificial Intelligence</span>, <span class="highlight-text text-ink font-medium">Autonomous Systems</span>, <span class="highlight-text text-ink font-medium">Application Development</span>, and <span class="highlight-text text-ink font-medium">Web Engineering</span>.
+            </p>
+            <p>
+              I enjoy diving into new frameworks, writing elegant backends, and crafting animations that bring frontends to life. At FAST National University, I blend computer science theories with hands-on practice, developing custom desktop applications, AI forecasting models, and interactive tools.
+            </p>
+          </div>
+
+          <div class="about-cards-grid">
+            <!-- Education Card -->
+            <div class="about-card glass-panel tilt-card">
+              <div class="card-glow-effect"></div>
+              <div class="about-card-icon-frame">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="about-card-svg"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path></svg>
+              </div>
+              <h3 class="about-card-title font-display">Education</h3>
+              <p class="about-card-subtitle font-mono">FAST National University</p>
+              <p class="about-card-text">BS Computer Science</p>
+              <span class="about-card-date font-mono">2024 – 2028</span>
+            </div>
+
+            <!-- Interests Card -->
+            <div class="about-card glass-panel tilt-card">
+              <div class="card-glow-effect"></div>
+              <div class="about-card-icon-frame">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="about-card-svg"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+              </div>
+              <h3 class="about-card-title font-display">Core Interests</h3>
+              <ul class="about-card-list">
+                <li><span class="bullet-gold"></span>Artificial Intelligence</li>
+                <li><span class="bullet-gold"></span>Autonomous Systems</li>
+                <li><span class="bullet-gold"></span>Application Development</li>
+                <li><span class="bullet-gold"></span>Web Development</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Quick Facts -->
+          <div class="quick-facts-wrapper">
+            <h4 class="quick-facts-title font-mono">Quick Facts</h4>
+            <div class="quick-facts-grid">
+              <div class="fact-item"><span class="fact-label">Location:</span> <span class="fact-value">Islamabad, Pakistan</span></div>
+              <div class="fact-item"><span class="fact-label">Language:</span> <span class="fact-value">English, Urdu</span></div>
+              <div class="fact-item"><span class="fact-label">Setup:</span> <span class="fact-value">Ubuntu / Windows</span></div>
+              <div class="fact-item"><span class="fact-label">Interests:</span> <span class="fact-value">Reading, Game Dev</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section">
+      <div class="container-custom">
+        <div class="skills-section-header">
+          <p class="section-eyebrow font-serif">02 — Expertise</p>
+          <h2 class="section-heading font-display">My Technical Toolkit.</h2>
+          <p class="section-description body-text">
+            No progress bars here. Just a clean breakdown of tools, frameworks, and programming languages I write and deploy.
+          </p>
+        </div>
+
+        <div class="skills-grid">
+          <!-- Programming Category -->
+          <div class="skills-category-card glass-panel tilt-card scroll-reveal fade-slide-up" data-reveal-delay="0.1">
+            <div class="card-glow-effect"></div>
+            <div class="skills-category-header">
+              <div class="skills-cat-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="skills-svg"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+              </div>
+              <h3 class="skills-cat-title font-display">Programming</h3>
+            </div>
+            <div class="skills-list">
+              <div class="skill-pill" data-cursor-hover><span class="skill-name">C++</span></div>
+              <div class="skill-pill" data-cursor-hover><span class="skill-name">Python</span></div>
+              <div class="skill-pill" data-cursor-hover><span class="skill-name">Java</span></div>
+              <div class="skill-pill" data-cursor-hover><span class="skill-name">HTML</span></div>
+              <div class="skill-pill" data-cursor-hover><span class="skill-name">CSS</span></div>
+            </div>
+          </div>
+
+          <!-- AI Category -->
+          <div class="skills-category-card glass-panel tilt-card scroll-reveal fade-slide-up" data-reveal-delay="0.2">
+            <div class="card-glow-effect"></div>
+            <div class="skills-category-header">
+              <div class="skills-cat-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="skills-svg"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path><path d="M2 12h20"></path></svg>
+              </div>
+              <h3 class="skills-cat-title font-display">AI / ML</h3>
+            </div>
+            <div class="skills-list">
+              <div class="skill-pill" data-cursor-hover><span class="skill-name">Machine Learning</span></div>
+              <div class="skill-pill" data-cursor-hover><span class="skill-name">TensorFlow</span></div>
+              <div class="skill-pill" data-cursor-hover><span class="skill-name">PyTorch</span></div>
+              <div class="skill-pill" data-cursor-hover><span class="skill-name">Pandas</span></div>
+              <div class="skill-pill" data-cursor-hover><span class="skill-name">NumPy</span></div>
+              <div class="skill-pill" data-cursor-hover><span class="skill-name">Scikit-learn</span></div>
+            </div>
+          </div>
+
+          <!-- Software Category -->
+          <div class="skills-category-card glass-panel tilt-card scroll-reveal fade-slide-up" data-reveal-delay="0.3">
+            <div class="card-glow-effect"></div>
+            <div class="skills-category-header">
+              <div class="skills-cat-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="skills-svg"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+              </div>
+              <h3 class="skills-cat-title font-display">Software Architecture</h3>
+            </div>
+            <div class="skills-list">
+              <div class="skill-pill" data-cursor-hover><span class="skill-name">OOP</span></div>
+              <div class="skill-pill" data-cursor-hover><span class="skill-name">DSA</span></div>
+              <div class="skill-pill" data-cursor-hover><span class="skill-name">JavaFX</span></div>
+              <div class="skill-pill" data-cursor-hover><span class="skill-name">Desktop Apps</span></div>
+            </div>
+          </div>
+
+          <!-- Web Category -->
+          <div class="skills-category-card glass-panel tilt-card scroll-reveal fade-slide-up" data-reveal-delay="0.4">
+            <div class="card-glow-effect"></div>
+            <div class="skills-category-header">
+              <div class="skills-cat-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="skills-svg"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+              </div>
+              <h3 class="skills-cat-title font-display">Web Engineering</h3>
+            </div>
+            <div class="skills-list">
+              <div class="skill-pill" data-cursor-hover><span class="skill-name">Responsive Design</span></div>
+              <div class="skill-pill" data-cursor-hover><span class="skill-name">CSS Grids & Flex</span></div>
+              <div class="skill-pill" data-cursor-hover><span class="skill-name">Vanilla Web API</span></div>
+              <div class="skill-pill" data-cursor-hover><span class="skill-name">Animation Systems</span></div>
+            </div>
+          </div>
+
+          <!-- Tools Category -->
+          <div class="skills-category-card glass-panel tilt-card scroll-reveal fade-slide-up" data-reveal-delay="0.5">
+            <div class="card-glow-effect"></div>
+            <div class="skills-category-header">
+              <div class="skills-cat-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="skills-svg"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+              </div>
+              <h3 class="skills-cat-title font-display">Tools & Libs</h3>
+            </div>
+            <div class="skills-list">
+              <div class="skill-pill" data-cursor-hover><span class="skill-name">Git</span></div>
+              <div class="skill-pill" data-cursor-hover><span class="skill-name">GitHub</span></div>
+              <div class="skill-pill" data-cursor-hover><span class="skill-name">VS Code</span></div>
+              <div class="skill-pill" data-cursor-hover><span class="skill-name">Ubuntu</span></div>
+              <div class="skill-pill" data-cursor-hover><span class="skill-name">SFML</span></div>
+              <div class="skill-pill" data-cursor-hover><span class="skill-name">Pygame</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects  -->
+    <section id="projects" class="projects-section">
+      <div class="container-custom">
+        <div class="projects-section-header">
+          <p class="section-eyebrow font-serif">03 — Featured Projects</p>
+          <h2 class="section-heading font-display">Crafting Ideas into Reality.</h2>
+          <p class="section-description body-text">
+            A curated showcase of academic tasks, machine learning endeavors, and application developments.
+          </p>
+        </div>
+
+        <div class="projects-list">
+          
+          <!-- P1-->
+          <div class="project-card scroll-reveal fade-slide-up">
+            <div class="project-image-column tilt-card" data-tilt-scale="1.01">
+              <div class="project-image-wrapper">
+                <img src="assets/project_visionary_ai.png" alt="Visionary AI Project cover" class="project-image" />
+                <div class="project-hover-overlay">
+                  <span class="hover-view-label font-mono">Explore Core Concept</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-details-column">
+              <h3 class="project-title font-display">Visionary AI</h3>
+              <p class="project-description body-text">
+                An advanced image recognition and processing software utilizing deep learning. Built to process computer vision models with real-time accuracy and performance thresholds.
+              </p>
+              <div class="project-contribution">
+                <h4 class="contribution-title font-mono">My Contribution:</h4>
+                <p class="contribution-text body-text">Designed the neural network pipelines, integrated image pre-processing modules using OpenCV, and structured model evaluation dashboards.</p>
+              </div>
+              <div class="project-tech-tags font-mono">
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">TensorFlow</span>
+                <span class="tech-pill">OpenCV</span>
+                <span class="tech-pill">NumPy</span>
+              </div>
+              <div class="project-actions">
+                <a href="https://github.com/alishbah-asif/Visionary-AI" target="_blank" rel="noopener noreferrer" class="btn-outline btn-project-link magnetic-btn" data-cursor-hover>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="project-action-icon"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  Repository
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- P2 -->
+          <div class="project-card project-card-reversed scroll-reveal fade-slide-up">
+            <div class="project-image-column tilt-card" data-tilt-scale="1.01">
+              <div class="project-image-wrapper">
+                <img src="assets/project_citymind.png" alt="CityMind Project cover" class="project-image" />
+                <div class="project-hover-overlay">
+                  <span class="hover-view-label font-mono">Explore Core Concept</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-details-column">
+              <h3 class="project-title font-display">CityMind</h3>
+              <p class="project-description body-text">
+                An autonomous systems traffic optimization model. It routes simulated city traffic loops through dynamic priority logic, mitigating intersection congestion bottlenecks.
+              </p>
+              <div class="project-contribution">
+                <h4 class="contribution-title font-mono">My Contribution:</h4>
+                <p class="contribution-text body-text">Engineered the routing algorithms using graph data structures, developed the simulation rendering loop with Pygame, and gathered test metrics.</p>
+              </div>
+              <div class="project-tech-tags font-mono">
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">Pygame</span>
+                <span class="tech-pill">DSA</span>
+                <span class="tech-pill">OOP</span>
+              </div>
+              <div class="project-actions">
+                <a href="https://github.com/alishbah-asif/CityMind" target="_blank" rel="noopener noreferrer" class="btn-outline btn-project-link magnetic-btn" data-cursor-hover>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="project-action-icon"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  Repository
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- P3 -->
+          <div class="project-card scroll-reveal fade-slide-up">
+            <div class="project-image-column tilt-card" data-tilt-scale="1.01">
+              <div class="project-image-wrapper">
+                <img src="assets/project_inceria.jpg" alt="Inceria Project cover" class="project-image" />
+                <div class="project-hover-overlay">
+                  <span class="hover-view-label font-mono">Explore Core Concept</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-details-column">
+              <h3 class="project-title font-display">Inceria</h3>
+              <p class="project-description body-text">
+                A desktop-based enterprise scheduling application designed for structured databases. Incorporates dynamic calendars, user role definitions, and background notification alerts.
+              </p>
+              <div class="project-contribution">
+                <h4 class="contribution-title font-mono">My Contribution:</h4>
+                <p class="contribution-text body-text">Developed the modular desktop UI using JavaFX, established the database connection controllers, and wrote client verification tests.</p>
+              </div>
+              <div class="project-tech-tags font-mono">
+                <span class="tech-pill">Java</span>
+                <span class="tech-pill">JavaFX</span>
+                <span class="tech-pill">SQL</span>
+                <span class="tech-pill">OOP</span>
+              </div>
+              <div class="project-actions">
+                <a href="https://github.com/alishbah-asif/Inceria" target="_blank" rel="noopener noreferrer" class="btn-outline btn-project-link magnetic-btn" data-cursor-hover>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="project-action-icon"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  Repository
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- P4 -->
+          <div class="project-card project-card-reversed scroll-reveal fade-slide-up">
+            <div class="project-image-column tilt-card" data-tilt-scale="1.01">
+              <div class="project-image-wrapper">
+                <img src="assets/project_cgpa_model.png" alt="CGPA Prediction Model Project cover" class="project-image" />
+                <div class="project-hover-overlay">
+                  <span class="hover-view-label font-mono">Explore Core Concept</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-details-column">
+              <h3 class="project-title font-display">CGPA Prediction Model</h3>
+              <p class="project-description body-text">
+                A supervised machine learning model designed to forecast student academic trends. Analyzes student study patterns, credit completion weights, and score histories to predict upcoming GPA bands.
+              </p>
+              <div class="project-contribution">
+                <h4 class="contribution-title font-mono">My Contribution:</h4>
+                <p class="contribution-text body-text">Conducted data cleaning and normalization, trained scikit-learn regressor models, and visualized predictive analysis scores.</p>
+              </div>
+              <div class="project-tech-tags font-mono">
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">Scikit-learn</span>
+                <span class="tech-pill">Pandas</span>
+                <span class="tech-pill">Matplotlib</span>
+              </div>
+              <div class="project-actions">
+                <a href="https://github.com/alishbah-asif/cgpa_prediction_model" target="_blank" rel="noopener noreferrer" class="btn-outline btn-project-link magnetic-btn" data-cursor-hover>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="project-action-icon"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  Repository
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Leadership -->
+    <section id="leadership" class="leadership-section">
+      <div class="container-custom">
+        <div class="leadership-section-header">
+          <p class="section-eyebrow font-serif">04 — Leadership & Experience</p>
+          <h2 class="section-heading font-display">Beyond the Classroom.</h2>
+          <p class="section-description body-text">
+            A timeline of collaborative efforts, hackathons, and creative work.
+          </p>
+        </div>
+
+        <div class="timeline-container">
+          <!-- Central line animation -->
+          <div class="timeline-line">
+            <div class="timeline-line-progress" id="timeline-progress"></div>
+          </div>
+
+          <div class="timeline-items">
+            <!-- T1 -->
+            <div class="timeline-item left-slide scroll-reveal">
+              <div class="timeline-dot-frame">
+                <div class="timeline-dot-glow"></div>
+                <div class="timeline-dot"></div>
+              </div>
+              <div class="timeline-content glass-panel tilt-card">
+                <div class="card-glow-effect"></div>
+                <div class="timeline-header">
+                  <span class="timeline-tag font-mono">Media & Design</span>
+                  <span class="timeline-date font-mono">2025</span>
+                </div>
+                <h3 class="timeline-title font-display">Video Editor</h3>
+                <p class="timeline-subtitle font-mono">Fast Islamic Society at NUCES</p>
+                <p class="timeline-text body-text">
+                  Creating highly-engaging video formats, assembling digital assets, syncing audio layouts, and optimizing frame effects for creators and academic events.
+                </p>
+              </div>
+            </div>
+
+            <!-- T2 -->
+            <div class="timeline-item right-slide scroll-reveal">
+              <div class="timeline-dot-frame">
+                <div class="timeline-dot-glow"></div>
+                <div class="timeline-dot"></div>
+              </div>
+              <div class="timeline-content glass-panel tilt-card">
+                <div class="card-glow-effect"></div>
+                <div class="timeline-header">
+                  <span class="timeline-tag font-mono">Community</span>
+                  <span class="timeline-date font-mono">2025</span>
+                </div>
+                <h3 class="timeline-title font-display">Volunteering</h3>
+                <p class="timeline-subtitle font-mono">Pakistan Bureau of Statistics</p>
+                <p class="timeline-text body-text">
+                  Administered paper-based survey forms to 20+ workshop attendees at Pakistan Bureau of Statistics Datafest, 
+supporting national data collection efforts across a 2-day census event.
+                </p>
+              </div>
+            </div>
+
+            <!-- T3 -->
+            <div class="timeline-item left-slide scroll-reveal">
+              <div class="timeline-dot-frame">
+                <div class="timeline-dot-glow"></div>
+                <div class="timeline-dot"></div>
+              </div>
+              <div class="timeline-content glass-panel tilt-card">
+                <div class="card-glow-effect"></div>
+                <div class="timeline-header">
+                  <span class="timeline-tag font-mono">Competition</span>
+                  <span class="timeline-date font-mono">2026</span>
+                </div>
+                <h3 class="timeline-title font-display">Hackathon Participant</h3>
+                <p class="timeline-subtitle font-mono">Local Innovation Chapters</p>
+                <p class="timeline-text body-text">
+                  Collaborated within multi-disciplinary groups to draft prototype architectures, pitch presentation flows, and deliver functioning MVPs under tight time constraints.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cert -->
+    <section id="certifications" class="certs-section">
+      <div class="container-custom">
+        <div class="certs-section-header">
+          <p class="section-eyebrow font-serif">05 — Certifications</p>
+          <h2 class="section-heading font-display">Validated Learning.</h2>
+          <p class="section-description body-text">
+            Industry and educational programs that validate my technical understanding.
+          </p>
+        </div>
+
+        <div class="certs-grid">
+          <!-- C1-->
+          <div class="cert-card glass-panel tilt-card scroll-reveal fade-slide-up" data-reveal-delay="0.1">
+            <div class="card-glow-effect"></div>
+            <div class="cert-icon-frame">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="cert-svg"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <div class="cert-content">
+              <h3 class="cert-title font-display">Responsive Web Design</h3>
+              <p class="cert-issuer font-mono">freeCodeCamp</p>
+              <p class="cert-description body-text">W3C standards, responsive layout methodologies, flexbox structures, and semantic web development paradigms.</p>
+            </div>
+            <a href="https://www.freecodecamp.org/certification/alishbahasif/responsive-web-design" target="_blank" rel="noopener noreferrer" class="cert-link-btn" aria-label="View certification" data-cursor-hover>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="cert-arrow-svg"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </a>
+          </div>
+
+          <!-- C2 -->
+          <div class="cert-card glass-panel tilt-card scroll-reveal fade-slide-up" data-reveal-delay="0.2">
+            <div class="card-glow-effect"></div>
+            <div class="cert-icon-frame">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="cert-svg"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+            </div>
+            <div class="cert-content">
+              <h3 class="cert-title font-display">AI Bootcamp</h3>
+              <p class="cert-issuer font-mono">Academic Initiative</p>
+              <p class="cert-description body-text">Core machine learning concepts, neural networks structure, linear algebraic models, and PyTorch model integration.</p>
+            </div>
+            <a href="assets/bootcamp_cert.pdf"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="cert-link-btn"
+   aria-label="View AI Bootcamp Certificate"
+   data-cursor-hover>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="cert-arrow-svg">
+        <line x1="7" y1="17" x2="17" y2="7"></line>
+        <polyline points="7 7 17 7 17 17"></polyline>
+    </svg>
+</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact-section">
+      <div class="container-custom contact-container">
+       
+        <div class="contact-info scroll-reveal fade-slide-right">
+          <p class="section-eyebrow font-serif">06 — Contact</p>
+          <h2 class="section-heading font-display">Let's build something next-gen.</h2>
+          <p class="contact-sub-text body-text">
+            Have a project in mind, want to discuss software paradigms, or simply grab a virtual coffee? Send a message and let's get in touch.
+          </p>
+
+          <div class="contact-channels">
+            <div class="channel-item glass-panel">
+              <div class="channel-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </div>
+              <div class="channel-details">
+                <span class="channel-label font-mono">Email Me</span>
+                <a href="mailto:alishbahasif6@gmail.com" class="channel-link font-display" data-cursor-hover>alishbahasif6@gmail.com</a>
+              </div>
+            </div>
+
+            <div class="channel-item glass-panel">
+              <div class="channel-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              </div>
+              <div class="channel-details">
+                <span class="channel-label font-mono">Location</span>
+                <span class="channel-link font-display">Islamabad, Pakistan</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Abstract Vector Map/Graphics Placeholder -->
+          <div class="map-placeholder glass-panel">
+            <div class="map-glow"></div>
+            <div class="map-lines-graphic">
+              <!-- Network lines representing connection -->
+              <svg viewBox="0 0 300 120" class="svg-map-graphic">
+                <circle cx="150" cy="60" r="6" class="map-center-dot"></circle>
+                <circle cx="150" cy="60" r="20" class="map-radar-circle-1"></circle>
+                <circle cx="150" cy="60" r="45" class="map-radar-circle-2"></circle>
+                <line x1="150" y1="60" x2="60" y2="30" class="map-net-line"></line>
+                <line x1="150" y1="60" x2="240" y2="40" class="map-net-line"></line>
+                <line x1="150" y1="60" x2="100" y2="90" class="map-net-line"></line>
+                <line x1="150" y1="60" x2="210" y2="100" class="map-net-line"></line>
+                <circle cx="60" cy="30" r="3" class="map-node-dot"></circle>
+                <circle cx="240" cy="40" r="3" class="map-node-dot"></circle>
+                <circle cx="100" cy="90" r="3" class="map-node-dot"></circle>
+                <circle cx="210" cy="100" r="3" class="map-node-dot"></circle>
+              </svg>
+            </div>
+            <span class="map-overlay-text font-mono">Target Coordinates: Islamabad, PK</span>
+          </div>
+        </div>
+
+        <!-- Contact Form Card -->
+        <div class="contact-form-panel glass-panel scroll-reveal fade-slide-left">
+          <div class="card-glow-effect"></div>
+          <form class="interactive-form" id="contact-form" action="#" method="POST">
+            <div class="form-group">
+              <input type="text" id="form-name" class="form-input" placeholder=" " required />
+              <label for="form-name" class="form-label font-mono">Your Name</label>
+              <span class="input-border-glow"></span>
+            </div>
+
+            <div class="form-group">
+              <input type="email" id="form-email" class="form-input" placeholder=" " required />
+              <label for="form-email" class="form-label font-mono">Email Address</label>
+              <span class="input-border-glow"></span>
+            </div>
+
+            <div class="form-group">
+              <input type="text" id="form-subject" class="form-input" placeholder=" " required />
+              <label for="form-subject" class="form-label font-mono">Subject</label>
+              <span class="input-border-glow"></span>
+            </div>
+
+            <div class="form-group">
+              <textarea id="form-message" class="form-input form-textarea" placeholder=" " rows="5" required></textarea>
+              <label for="form-message" class="form-label font-mono">Your Message</label>
+              <span class="input-border-glow"></span>
+            </div>
+
+            <button type="submit" class="btn-primary form-submit-btn magnetic-btn" data-cursor-hover>
+              Send Message
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="form-submit-icon"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+          </form>
+          
+          <div class="form-success-message hidden" id="form-success">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="success-check-svg"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <h3 class="success-heading font-display">Message Dispatched!</h3>
+            <p class="success-text body-text">Thank you for reaching out. I'll get back to you shortly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top-btn" id="back-to-top" aria-label="Back to top" data-cursor-hover>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="back-to-top-svg"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+  </button>
+
+  <!-- footer -->
+  <footer class="portfolio-footer">
+    <div class="container-custom footer-container">
+      <div class="footer-upper">
+        <div class="footer-brand">
+  <h2 class="footer-logo font-display">
+    Alishbah Asif
+  </h2>
+
+  <p class="footer-brand-sub body-text">
+    Building software with curiosity, creativity, and continuous learning.
+  </p>
+</div>
+        
+        <div class="footer-links-wrapper">
+          <div class="footer-link-group">
+            <h5 class="footer-group-title font-serif">Navigate</h5>
+            <ul class="footer-group-list">
+              <li><a href="#home" class="footer-nav-item">Home</a></li>
+              <li><a href="#about" class="footer-nav-item">About</a></li>
+              <li><a href="#skills" class="footer-nav-item">Skills</a></li>
+              <li><a href="#projects" class="footer-nav-item">Projects</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-link-group">
+            <h5 class="footer-group-title font-serif">Connect</h5>
+            <ul class="footer-group-list font-mono">
+              <li><a href="mailto:alishbahasif6@gmail.com" class="footer-nav-item">Email</a></li>
+              <li><a href="https://github.com/alishbah-asif" target="_blank" rel="noopener noreferrer" class="footer-nav-item">GitHub</a></li>
+              <li><a href="https://www.linkedin.com/in/alishbah-asif-489766326/" target="_blank" rel="noopener noreferrer" class="footer-nav-item">LinkedIn</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-lower">
+        <p class="copyright-text font-mono">© <span id="current-year">2026</span> Alishbah Asif. All rights reserved.</p>
+        <div class="footer-social-icons">
+          <a href="https://github.com/alishbah-asif" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="footer-social-btn" data-cursor-hover>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="footer-social-svg"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/alishbah-asif-489766326/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer-social-btn" data-cursor-hover>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="footer-social-svg"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+         
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script Modules -->
+  <script src="script.js"></script>
+</body>
+</html>
