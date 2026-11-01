@@ -133,9 +133,9 @@ function initTypingText() {
   const phrases = 
     [
   "Computer Science Student",
-  "Exploring Artificial Intelligence and Autonoumous System",
-  "Interested in Web Development",
-  "Interested in Application Development"
+  "UI/UX Designer & Front-End Developer",
+  "Designing Accessible, User-Centered Interfaces",
+  "Exploring Artificial Intelligence"
 ];
 
 
